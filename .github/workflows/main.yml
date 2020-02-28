@@ -1,0 +1,24 @@
+name: CI
+
+on: [push]
+
+jobs:
+  alpine-server:
+      name: Alpine language server
+      container: alpine:3.7
+      
+      steps:
+      - uses: actions/checkout@v1
+      - name: Requirements install
+        run: sudo apt-get update && sudo apt-get install uuid-dev g++-8 ninja-build
+      - name: Configure
+        run: mkdir build && cd build && cmake -G Ninja -DBUILD_VSIX=Off -DCMAKE_C_COMPILER=gcc-8 -DCMAKE_CXX_COMPILER=g++-8 ../
+      - name: Build
+        run: cd build && cmake --build .
+      - name: Test
+        run: cd build/bin && ./server_test && ./library_test
+      - name: Actions artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: language_server_linux
+          path: build/bin/language_server
