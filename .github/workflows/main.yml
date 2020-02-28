@@ -11,7 +11,7 @@ jobs:
       steps:
       - uses: actions/checkout@v1
       - name: Requirements install
-        run: sudo apt-get update && sudo apt-get install uuid-dev g++-8 ninja-build
+        run: apt-get update && apt-get install uuid-dev g++-8 ninja-build
       - name: Configure
         run: mkdir build && cd build && cmake -G Ninja -DBUILD_VSIX=Off -DCMAKE_C_COMPILER=gcc-8 -DCMAKE_CXX_COMPILER=g++-8 ../
       - name: Build
