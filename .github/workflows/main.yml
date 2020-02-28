@@ -5,6 +5,7 @@ on: [push]
 jobs:
   alpine-server:
       name: Alpine language server
+      runs-on: ubuntu-18.04
       container: alpine:3.7
       
       steps:
