@@ -12,3 +12,4 @@ jobs:
         with:
           project: adam
           column: "To do"
+          repo-token: ${{ secrets.GH_SECRET }}
