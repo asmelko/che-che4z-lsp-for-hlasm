@@ -66,6 +66,8 @@ jobs:
         run: mkdir build && cd build && cmake -G Ninja -DCMAKE_C_COMPILER=gcc-8 -DCMAKE_CXX_COMPILER=g++-8 ../
       - name: Build
         run: cd build && cmake --build .
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v1 
       - name: Server Test
         run: cd build/bin && ./server_test && ./library_test
       - name: Extension Test
